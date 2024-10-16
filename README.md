@@ -1,4 +1,5 @@
-# Welcome to your Expo app 👋
+# react-native-expo-nativewind-app
+A React Native Expo project with Nativewind and Tanstack
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 

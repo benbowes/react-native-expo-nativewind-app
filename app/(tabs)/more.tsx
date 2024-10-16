@@ -1,45 +1,37 @@
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { StyleSheet } from "react-native";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-
 import { useQuery } from "@tanstack/react-query";
-import { fetchPosts } from "@/api";
+import { fetchUsers } from "@/api";
 
-export default function HomeScreen() {
+export default function TabTwoScreen() {
   const { isPending, isError, data, error } = useQuery({
-    queryKey: ["posts"],
-    queryFn: fetchPosts,
+    queryKey: ["users", 21],
+    queryFn: fetchUsers,
   });
-
-  if (isError) {
-    return <ThemedText>{error.message}</ThemedText>;
-  }
-
-  if (isPending) {
-    return <ThemedText>Loading...</ThemedText>;
-  }
 
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
       headerImage={
-        <MaterialCommunityIcons
-          name="post-outline"
-          size={310}
-          style={styles.headerImage}
-        />
+        <Ionicons size={310} name="finger-print" style={styles.headerImage} />
       }
     >
       <ThemedView variant="title">
-        <ThemedText type="title">Posts</ThemedText>
+        <ThemedText type="title">Users</ThemedText>
       </ThemedView>
 
-      {data.map((v) => (
+      {isError && <ThemedText>{error.message}</ThemedText>}
+
+      {isPending && <ThemedText>Loading...</ThemedText>}
+
+      {data?.map((v) => (
         <ThemedView variant="section" key={v.id}>
-          <ThemedText type="defaultSemiBold">{v.title}</ThemedText>
-          <ThemedText>{v.body}</ThemedText>
+          <ThemedText type="defaultSemiBold">{v.name}</ThemedText>
+          <ThemedText>Username: {v.username}</ThemedText>
+          <ThemedText>Email: {v.email}</ThemedText>
         </ThemedView>
       ))}
     </ParallaxScrollView>

@@ -1,14 +1,23 @@
-import { View, type ViewProps } from 'react-native';
+import { View, type ViewProps } from "react-native";
+import { styled } from "nativewind";
 
-import { useThemeColor } from '@/hooks/useThemeColor';
+const StyledView = styled(View);
 
 export type ThemedViewProps = ViewProps & {
-  lightColor?: string;
-  darkColor?: string;
+  className?: string;
+  variant?: "section" | "title";
 };
 
-export function ThemedView({ style, lightColor, darkColor, ...otherProps }: ThemedViewProps) {
-  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
-
-  return <View style={[{ backgroundColor }, style]} {...otherProps} />;
+export function ThemedView({
+  className = "",
+  variant = "section",
+  ...otherProps
+}: ThemedViewProps) {
+  const variantClasses = {
+    title: "flex flex-row items-center gap-2",
+    section: "flex gap-2 mb-4",
+  }[variant];
+  return (
+    <StyledView className={`${variantClasses} ${className}`} {...otherProps} />
+  );
 }

@@ -1,7 +1,13 @@
 # react-native-expo-nativewind-app
+
 A React Native Expo project with Nativewind and Tanstack
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+
+---
+
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app). I am trialling tailwindcss/nativewind with React Native and also Tanstack for http requests.
+
+
 
 ## Get started
 
